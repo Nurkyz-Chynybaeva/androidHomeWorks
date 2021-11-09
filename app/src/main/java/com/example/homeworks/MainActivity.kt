@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
             textView.text = "red"
             layout.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
         }
+
         btn2.setOnClickListener {
             textView.text = "yellow"
             layout.setBackgroundColor(
