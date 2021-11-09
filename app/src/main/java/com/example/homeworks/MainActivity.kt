@@ -26,15 +26,9 @@ class MainActivity : AppCompatActivity() {
             textView.text = "red"
             layout.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
         }
-
         btn2.setOnClickListener {
             textView.text = "yellow"
-            layout.setBackgroundColor(
-                ContextCompat.getColor(
-                    this,
-                    android.R.color.holo_orange_light
-                )
-            )
+            layout.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_orange_light))
         }
         btn3.setOnClickListener {
             textView.text = "green"
