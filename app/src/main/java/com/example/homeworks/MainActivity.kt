@@ -1,93 +1,58 @@
 package com.example.homeworks
 
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.text.Layout
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintSet
 
-class MainActivity : AppCompatActivity(){                                  //..., View.OnClickListener
+class MainActivity : AppCompatActivity(), OnClickListener {
 
-       private lateinit var textView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.hw_20_10_21)
+        setContentView(R.layout.activity_main)
+        initFragments()
 
-        textView = findViewById(R.id.textView)
-
-        val btn1 = findViewById<AppCompatButton>(R.id.btn1)
-        val btn2 = findViewById<AppCompatButton>(R.id.btn2)
-        val btn3 = findViewById<AppCompatButton>(R.id.btn3)
-
-        btn1.setOnClickListener{
-            textView.text = "first click 1"
+        val btn1 = findViewById<AppCompatButton>(R.id.btnM1)
+        btn1.setOnClickListener {
+            val fragment1 = supportFragmentManager.findFragmentByTag("fragment1")
+            val fragment2 = supportFragmentManager.findFragmentByTag("fragment2")
+            supportFragmentManager.beginTransaction()
+                .show(fragment1!!)
+                .hide(fragment2!!)
+                .commit()
         }
-        btn2.setOnClickListener{
-            textView.text = "second click 2"
+
+        val btn2 = findViewById<AppCompatButton>(R.id.btnM2)
+        btn2.setOnClickListener {
+            val fragment2 = supportFragmentManager.findFragmentByTag("fragment2")
+            val fragment1 = supportFragmentManager.findFragmentByTag("fragment1")
+            supportFragmentManager.beginTransaction()
+                .show(fragment2!!)
+                .hide(fragment1!!)
+                .commit()
         }
+
+        val btn3 = findViewById<AppCompatButton>(R.id.btnM3)
         btn3.setOnClickListener{
-            textView.text = "third click 3"
+            startActivity(Intent(this, MainActivity2::class.java))
         }
-//
-//    btn1.setOnClickListener{
-//        TextView.text = "first click"
-//        Toast.makeText(this, "f click" , Toast.LENGTH_LONG).show()
-//    }
-//        btn2.setOnClickListener{
-//            TextView.text = "second click"
-//            Toast.makeText(this, "s click" , Toast.LENGTH_LONG).show()
-//        }
-//      btn3.setOnClickListener{
-//            TextView.text = "third click"
-//            Toast.makeText(this, "t click" , Toast.LENGTH_LONG).show()
-//        }
+    }
 
-}
+    private fun initFragments() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, Fragment1(), "fragment1")
+            .addToBackStack(null)
+            .commit()
 
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, Fragment2(), "fragment2")
+            .addToBackStack(null)
+            .commit()
+    }
 
-
-
+    override fun onClicked(message: String) {
+        // ---
+    }
 
 
-
-
-
-
-
-//        val btn1 = findViewById<AppCompatButton>(R.id.btn1)                                   java style
-//        val btn2 = findViewById<AppCompatButton>(R.id.btn2)
-//        val btn3 = findViewById<AppCompatButton>(R.id.btn3)
-//        btn1.setOnClickListener(this)
-//        btn2.setOnClickListener(this)
-//        btn3.setOnClickListener(this)
-
-
-//    override fun onClick(view: View) {                                                        java style
-//      val msg = when(view.id){
-//            R.id.btn1 -> "first"
-//            R.id.btn2 -> "second"
-//            R.id.btn3 -> "third"
-//          else -> "unknown"
-//        }
-//        val txtView = findViewById<TextView>(R.id.textView)
-//        txtView.text= msg
-//    }
-
-//    fun onClickEvent(view: View){                                        старый способ
-//      val msg = when(view.id){
-//            R.id.btn1 -> "first"
-//            R.id.btn2 -> "second"
-//            R.id.btn3 -> "third"
-//          else -> "unknown"
-//        }
-//
-//        val txtView = findViewById<TextView>(R.id.textView)
-//        txtView.text= msg
-//      txtView.text="click"
-//    }
 }
