@@ -1,93 +1,46 @@
 package com.example.homeworks
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.view.View
+import android.os.PersistableBundle
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintSet
+import androidx.appcompat.widget.AppCompatTextView
 
-class MainActivity : AppCompatActivity(){                                  //..., View.OnClickListener
-
-       private lateinit var textView: TextView
+class MainActivity : AppCompatActivity() {
+    private lateinit var text: AppCompatTextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.hw_20_10_21)
+        setContentView(R.layout.activity_main)
 
-        textView = findViewById(R.id.textView)
+        val text = findViewById<TextView>(R.id.txt)
+        val button1 = findViewById<Button>(R.id.btn1)
+        val button2 = findViewById<Button>(R.id.btn2)
 
-        val btn1 = findViewById<AppCompatButton>(R.id.btn1)
-        val btn2 = findViewById<AppCompatButton>(R.id.btn2)
-        val btn3 = findViewById<AppCompatButton>(R.id.btn3)
-
-        btn1.setOnClickListener{
-            textView.text = "first click 1"
+        var count = 0
+        button1.setOnClickListener {
+            ++count
+            text.text = count.toString()
         }
-        btn2.setOnClickListener{
-            textView.text = "second click 2"
+        button2.setOnClickListener {
+            if (text.text != "0") {
+                text.text = "0"
+                count = 0
+            }
         }
-        btn3.setOnClickListener{
-            textView.text = "third click 3"
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState?.run {
+            putString("count", text.toString())
         }
-//
-//    btn1.setOnClickListener{
-//        TextView.text = "first click"
-//        Toast.makeText(this, "f click" , Toast.LENGTH_LONG).show()
-//    }
-//        btn2.setOnClickListener{
-//            TextView.text = "second click"
-//            Toast.makeText(this, "s click" , Toast.LENGTH_LONG).show()
-//        }
-//      btn3.setOnClickListener{
-//            TextView.text = "third click"
-//            Toast.makeText(this, "t click" , Toast.LENGTH_LONG).show()
-//        }
+        super.onSaveInstanceState(outState)
+    }
 
-}
-
-
-
-
-
-
-
-
-
-
-
-//        val btn1 = findViewById<AppCompatButton>(R.id.btn1)                                   java style
-//        val btn2 = findViewById<AppCompatButton>(R.id.btn2)
-//        val btn3 = findViewById<AppCompatButton>(R.id.btn3)
-//        btn1.setOnClickListener(this)
-//        btn2.setOnClickListener(this)
-//        btn3.setOnClickListener(this)
-
-
-//    override fun onClick(view: View) {                                                        java style
-//      val msg = when(view.id){
-//            R.id.btn1 -> "first"
-//            R.id.btn2 -> "second"
-//            R.id.btn3 -> "third"
-//          else -> "unknown"
-//        }
-//        val txtView = findViewById<TextView>(R.id.textView)
-//        txtView.text= msg
-//    }
-
-//    fun onClickEvent(view: View){                                        старый способ
-//      val msg = when(view.id){
-//            R.id.btn1 -> "first"
-//            R.id.btn2 -> "second"
-//            R.id.btn3 -> "third"
-//          else -> "unknown"
-//        }
-//
-//        val txtView = findViewById<TextView>(R.id.textView)
-//        txtView.text= msg
-//      txtView.text="click"
-//    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        text.text = savedInstanceState.getString("count")
+    }
 }
