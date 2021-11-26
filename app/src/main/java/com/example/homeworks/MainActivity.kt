@@ -1,31 +1,37 @@
 package com.example.homeworks
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var textView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        textView = findViewById(R.id.textView)
+        val recycler = findViewById<RecyclerView>(R.id.recycler)
+        val layoutManager = LinearLayoutManager(this)
+        val adapter = SimpleAdapter {
+            Toast.makeText(this, "ITEM -$it", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity2::class.java)
+            intent.putExtra("text", "item - $it")
+            startActivity(intent)
+        }
 
-        val btn1 = findViewById<AppCompatButton>(R.id.btn1)
-        val btn2 = findViewById<AppCompatButton>(R.id.btn2)
-        val btn3 = findViewById<AppCompatButton>(R.id.btn3)
+        recycler.layoutManager = layoutManager
+        recycler.adapter = adapter
+        recycler.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
 
-        btn1.setOnClickListener {
-            textView.text = "first click 1"
+        val list = mutableListOf<String>()
+        for (i in 0..20) {
+            list.add("ITEM -$i")
         }
-        btn2.setOnClickListener {
-            textView.text = "second click 2"
-        }
-        btn3.setOnClickListener {
-            textView.text = "third click 3"
-        }
+        adapter.setData(list)
     }
 }
