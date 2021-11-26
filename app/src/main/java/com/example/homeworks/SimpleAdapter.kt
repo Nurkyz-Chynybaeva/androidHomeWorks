@@ -37,7 +37,7 @@ class SimpleAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: String) {
-            val txt = itemView.findViewById<AppCompatTextView>(R.id.item_txt)
+            val txt = itemView.findViewById<AppCompatTextView>(R.id.txtItem)
             txt.text = item
             itemView.setOnClickListener {
                 click.invoke(adapterPosition)
