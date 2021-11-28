@@ -7,29 +7,26 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 
-class Fragment2: Fragment(R.layout.fragment2) {
-
-    private lateinit var txt : AppCompatTextView
-    private lateinit var listener: OnClickListener
+class Fragment2 : Fragment(R.layout.fragment2) {
+    private lateinit var listener: OnButtonClicked
+    private lateinit var text: AppCompatTextView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = context as OnClickListener
+        listener = context as OnButtonClicked
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        text = view.findViewById(R.id.txt1F2)
 
-        txt = view.findViewById(R.id.txtF2)
-
-        val btn = view.findViewById<AppCompatButton>(R.id.btnF2)
-        btn.setOnClickListener {
-            listener.onClicked("message from the second fragment")
+        val button = view.findViewById<AppCompatButton>(R.id.btnF2)
+        button.setOnClickListener {
+            listener.onClick("message from the Fragment2")
         }
     }
 
-    fun setText(value: String){
-        txt.text = value
-
+    fun setText(message: String) {
+        text.text = message
     }
 }
