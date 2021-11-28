@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
     <androidx.fragment.app.FragmentContainerView
         android:name="com.example.homeworks.Fragment1"
         android:id="@+id/firstContainer"
