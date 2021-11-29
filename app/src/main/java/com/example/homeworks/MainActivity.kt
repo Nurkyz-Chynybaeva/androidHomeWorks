@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState?.run {
-            putString("count", text.toString())
+            putString("count", text.toString()) // крашится, когда поворачиваю экран
         }
         super.onSaveInstanceState(outState)
     }
