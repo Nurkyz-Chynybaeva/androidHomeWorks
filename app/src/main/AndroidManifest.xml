@@ -10,11 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeWorks">
         <activity
-            android:name=".MainActivity2"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
