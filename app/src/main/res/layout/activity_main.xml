@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="#2F344C">
+    
+    <!-- обрати внимание, что не на всех экранах корректно отрисовывается -->
+    <!-- посмотри по ссылке, нижние кнопки не поместились -->
+    <!-- https://ibb.co/mzKV5Hf -->
+    
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
