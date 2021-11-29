@@ -19,14 +19,14 @@ class MainActivity : AppCompatActivity() {
             val message = binding.messageC.text.toString()
             val address = email.split(",".toRegex()).toTypedArray()
             val intent = Intent(Intent.ACTION_SENDTO).apply {
-                data = Uri.parse("to:")
+                data = Uri.parse("to:") // "to", работает ?
                 putExtra(Intent.EXTRA_EMAIL, address)
                 putExtra(Intent.EXTRA_SUBJECT, subject)
                 putExtra(Intent.EXTRA_TEXT, message)
             }
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
-            } else {
+            } else { // у меня показывает тоаст, даже если приложение почты есть. У меня api > 30
                 Toast.makeText(
                     this@MainActivity,
                     "You do not have any mail applications preinstalled",
