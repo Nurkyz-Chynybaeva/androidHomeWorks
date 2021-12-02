@@ -7,6 +7,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 
+// по условию задачи должны быть editText'ы, в 1м и во 2м фрагментах
+
 class Fragment1 : Fragment(R.layout.fragment1) {
     private lateinit var listener: OnButtonClicked2
     private lateinit var text: AppCompatTextView
